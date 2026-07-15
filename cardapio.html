@@ -1,165 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gay</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loja Gamer</title>
 
- <style>
+<style>
 
-*{
-    box-sizing: border-box;
-}
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box}
 
+/* Fundo da página */
 body{
-    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#111,#2b2b2b,#8b0000);
     min-height:100vh;
     text-align:center;
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(135deg,#696867,#222029);
+    color:#fff;
+    padding:30px;
 }
 
-
+/* Título */
 h1{
-    color:white;
     font-size:45px;
-    text-shadow:2px 2px 5px #333;
-    margin-top:40px;
+    margin-bottom:30px;
+    text-shadow:3px 3px 10px #000;
 }
 
-
-/* Área dos campos */
-
+/* Campo de pesquisa */
 input{
-
-    width:220px;
+    width:230px;
     padding:12px;
-    margin:8px;
-
     border:none;
-    border-radius:25px;
-
-    font-size:16px;
-
+    border-radius:30px;
     outline:none;
-
-    box-shadow:0 3px 8px rgba(0,0,0,0.2);
-
-}
-
-
-input:focus{
-
-    transform:scale(1.05);
-    border:2px solid hsl(4, 75%, 47%);
-
-}
-
-
-/* Organização dos produtos */
-
-#cardapio{
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:25px;
-
-    margin-top:30px;
-
-}
-
-
-/* Cartão do produto */
-
-.card{
-
-    background:white;
-
-    width:280px;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    box-shadow:
-    0 10px 20px rgba(0,0,0,0.25);
-
-    transition:0.3s;
-
-}
-
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-}
-
-
-/* Nome do produto */
-
-.card h2{
-
-    color:hsl(0, 97%, 46%);
-
-    font-size:28px;
-
-}
-
-
-/* Preço */
-
-.card p:first-of-type{
-
-    color:green;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-}
-
-
-/* Categoria */
-
-.card p:last-of-type{
-
-    background:#eee;
-
-    display:inline-block;
-
-    padding:8px 20px;
-
-    border-radius:20px;
-
-}
-
-
-button{
-      cursor: pointer;
-      
-    background:#e85d04;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 25px;
-
-    border-radius:25px;
-
-    cursor:pointer;
-
     font-size:16px;
-
+    transition:.3s;
+}
+input:focus{
+    transform:scale(1.05);
+    box-shadow:0 0 12px red;
 }
 
-
+/* Botões */
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:30px;
+    background:#d00000;
+    color:#fff;
+    cursor:pointer;
+    transition:.3s;
+    margin:5px;
+}
 button:hover{
+    background:#ff3b3b;
+    transform:scale(1.05);
+}
 
-    background:#9d0208;
+/* Área dos cards */
+#cardapio{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+    margin-top:35px;
+}
 
+/* Card */
+.card{
+    width:280px;
+    background:#fff;
+    color:#000;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 10px 20px rgba(0,0,0,.4);
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-8px) scale(1.03);
+}
+.card img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+}
+.card h2{
+    color:#c00;
+    margin:12px 0;
+}
+.card p{
+    margin:8px 0;
+}
+.card p:first-of-type{
+    color:green;
+    font-weight:bold;
+    font-size:20px;
+}
+.card p:last-of-type{
+    display:inline-block;
+    padding:6px 15px;
+    background:#eee;
+    border-radius:20px;
 }
 
 </style>
@@ -167,159 +110,77 @@ button:hover{
 
 <body>
 
-    <h1> 🎮 Loja Do gamer🎮 </h1>
+<h1>🎮 Loja Gamer 🎮</h1>
 
-
-
-<br><br>
-
-<input type="text" id="pesquisa" placeholder="Pesquisar jogo">
-
+<input id="pesquisa" placeholder="Pesquisar jogo">
 <button onclick="pesquisarJogo()">Pesquisar</button>
+<button onclick="mostrar(produtos)">Mostrar Todos</button>
 
-<button onclick="listarprodutos()">Mostrar Todos</button>
+<div id="cardapio"></div>
 
+<script>
 
-
-    <div id="cardapio"></div>
-
-
-    <script>
-        let produtos = [
-
+// Lista de jogos
+let produtos=[
 {
-    nome: "Minecraft",
-    preco: 99.90,
-    categoria: "Aventura",
-    imagem: "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg"
+    nome:"Minecraft",
+    preco:99.90,
+    categoria:"Aventura",
+    imagem:"https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg"
 },
-
 {
-    nome: "Grand Theft Auto V",
-    preco: 149.90,
-    categoria: "Ação",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
+    nome:"Grand Theft Auto V",
+    preco:149.90,
+    categoria:"Ação",
+    imagem:"https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
 },
-
 {
-    nome: "EA Sports FC 26",
-    preco: 349.90,
-    categoria: "Esporte",
-    imagem: "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/07/Capa-EA-Sports-FC-26-e1752689011939.jpg?w=995"
+    nome:"EA Sports FC 26",
+    preco:349.90,
+    categoria:"Esporte",
+    imagem:"https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/07/Capa-EA-Sports-FC-26-e1752689011939.jpg?w=995"
 },
-
 {
-    nome: "Call of Duty: Black Ops 7",
-    preco: 299.90,
-    categoria: "Tiro",
-    imagem: "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blackops7/play-now/CHIMERA_PlayNow_KeyArt_CrossGenStandard.webp"
+    nome:"Call of Duty: Black Ops 7",
+    preco:299.90,
+    categoria:"Tiro",
+    imagem:"https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blackops7/play-now/CHIMERA_PlayNow_KeyArt_CrossGenStandard.webp"
 },
-
 {
-    nome: "Forza Horizon 5",
-    preco: 249.90,
-    categoria: "Corrida",
-    imagem: "https://image.api.playstation.com/vulcan/ap/rnd/202502/1300/b76acec852af7bc40931592a5a07d1bd23a5705a1b396508.jpg"
+    nome:"Forza Horizon 5",
+    preco:249.90,
+    categoria:"Corrida",
+    imagem:"https://image.api.playstation.com/vulcan/ap/rnd/202502/1300/b76acec852af7bc40931592a5a07d1bd23a5705a1b396508.jpg"
 }
-
 ];
 
-
-        function listarprodutos(){
-
-            let cardapio = document.getElementById("cardapio");
-
-            cardapio.innerHTML = "";
-
-
-            for(let i = 0; i < produtos.length; i++){
-
-              cardapio.innerHTML +=
-"<div class='card'>" +
-
-"<img src='" + produtos[i].imagem + "' width='220'><br><br>" +
-
-"<h2>" + produtos[i].nome + "</h2>" +
-
-"<p>Preço: R$ " + produtos[i].preco.toFixed(2) + "</p>" +
-
-"<p>Categoria: " + produtos[i].categoria + "</p>" +
-
-"<button onclick='comprarItem(" + i + ")'>Comprar</button>" +
-
-"</div>";
-            }
-
-        }
-
-
-        listarprodutos();
-
-        function adicionaritem(){
-            let nome = document.getElementById("nome").value;
-            let preco = document.getElementById("preco").value;
-            let categoria = document.getElementById("categoria").value;
-
-            produtos.push({
-                nome: nome,
-                preco: preco,
-                categoria: categoria
-            });
-
-            listarprodutos();
-
-              document.getElementById("nome").value = ""
-            document.getElementById("preco").value =""
-            document.getElementById("categoria").value = ""
-
-
-        }
-            function comprarItem(indice){
-
-    alert(
-        "Você comprou:\n\n" +
-        produtos[indice].nome +
-        "\n\nValor: R$ " +
-        produtos[indice].preco.toFixed(2)
-    );
-
+// Exibe os cards
+function mostrar(lista){
+cardapio.innerHTML=lista.map((p,i)=>`
+<div class="card">
+<img src="${p.imagem}">
+<h2>${p.nome}</h2>
+<p>Preço: R$ ${p.preco.toFixed(2)}</p>
+<p>${p.categoria}</p>
+<button onclick="comprar(${i})">Comprar</button>
+</div>`).join("");
 }
 
-        function pesquisarJogo(){
-
-    let nomePesquisa = document.getElementById("pesquisa").value.toLowerCase();
-
-    let cardapio = document.getElementById("cardapio");
-
-    cardapio.innerHTML = "";
-
-    for(let i = 0; i < produtos.length; i++){
-
-        if(produtos[i].nome.toLowerCase().includes(nomePesquisa)){
-
-            cardapio.innerHTML +=
-            "<div class='card'>" +
-
-            "<img src='" + produtos[i].imagem + "' width='220'><br><br>" +
-
-            "<h2>" + produtos[i].nome + "</h2>" +
-
-            "<p>Preço: R$ " + produtos[i].preco.toFixed(2) + "</p>" +
-
-            "<p>Categoria: " + produtos[i].categoria + "</p>" +
-
-            "<button onclick='comprarItem(" + i + ")'>Comprar</button>" +
-
-            "</div>";
-
-        }
-
-    }
-
+// Mensagem de compra
+function comprar(i){
+alert(`Você comprou:\n\n${produtos[i].nome}\n\nValor: R$ ${produtos[i].preco.toFixed(2)}`);
 }
 
-    </script>
+// Pesquisa pelo nome
+function pesquisarJogo(){
+let txt=pesquisa.value.toLowerCase();
+mostrar(produtos.filter(p=>p.nome.toLowerCase().includes(txt)));
+}
 
+// Mostra todos ao abrir
+mostrar(produtos);
+
+</script>
 
 </body>
 </html>
