@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Loja Gamer</title>
+<title>Loja Gamer.com</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Reset */
-*{margin:0;padding:0;box-sizing:border-box}
+    /* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
 
 /* Fundo da página */
 body{
@@ -53,6 +59,7 @@ button{
     transition:.3s;
     margin:5px;
 }
+
 button:hover{
     background:#ff3b3b;
     transform:scale(1.05);
@@ -80,6 +87,7 @@ button:hover{
 .card:hover{
     transform:translateY(-8px) scale(1.03);
 }
+
 .card img{
     width:220px;
     height:220px;
@@ -93,6 +101,7 @@ button:hover{
 .card p{
     margin:8px 0;
 }
+
 .card p:first-of-type{
     color:green;
     font-weight:bold;
@@ -104,10 +113,8 @@ button:hover{
     background:#eee;
     border-radius:20px;
 }
-
 </style>
 </head>
-
 <body>
 
 <h1>🎮 Loja Gamer 🎮</h1>
@@ -119,7 +126,7 @@ button:hover{
 <div id="cardapio"></div>
 
 <script>
-
+    
 // Lista de jogos
 let produtos=[
 {
@@ -179,7 +186,6 @@ mostrar(produtos.filter(p=>p.nome.toLowerCase().includes(txt)));
 
 // Mostra todos ao abrir
 mostrar(produtos);
-
 </script>
 
 </body>

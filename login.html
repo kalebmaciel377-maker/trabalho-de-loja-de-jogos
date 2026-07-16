@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+<body>
+    <main class="conteiner-box">
+        <h1>Loja Games</h1>
+        <div class="input-box">
+            <input type="email" placeholder="Email" id="Email">
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Senha" id="Senha">
+        </div>
+        <div class="lembrar-senha">
+            <label>
+                <input type="checkbox">
+                lembrar a Senha
+            </label>
+        </div>
+        <button class="Login" id="botao" onclick="acessar()">Entrar</button>
+    </main>
+    <script>
+        function acessar() {
+            let email = document.getElementById("Email").value;
+            let senha = document.getElementById("Senha").value;
+
+            if (email == "kaleb@gmail.com" && senha == "1") {
+                window.location.href = "cardapio.html";
+            } else {
+                alert("Email ou senha incorretos!");
+            }
+        }
+
+    </script>
+</body>
+</html>
