@@ -9,27 +9,40 @@
 <body>
     <h1>Bem Vindo(a)</h1>
     <p>Quem está logando</p>
-    <button>Cilentes</button>
+    <button onclick="Cilentes()">Cilentes</button>
     <button>Vendedores</button>
     <div class="game">
         <div class="game1">
-            <img src="img/game.pass.png" alt="game pass">
-            <h3>Preço: 0.00</h3>
-            <button>Comprar</button>
+            <h2>Game Pass</h2>
+            <img src="img/playstation.1.jpg" alt="game pass">
+            <h3>Preço: 49.90</h3>
+            <button onclick="comprar()">Comprar</button>
         </div>
 
         <div class="game2">
-            <img src="img/game.xbox.png" alt="">
-            <h3>Preço: 0.00</h3>
-            <button>Comprar</button>
+            <h2>Game Pass</h2>
+            <img src="img/xbox.jpg" alt="">
+            <h3>Preço: 49.90</h3>
+            <button onclick="comprar()">Comprar</button>
         </div>
 
         <div class="game3">
-            <img src="img/nitendo.pass.png" alt="">
-            <h3>Preço: 0.00</h3>
-            <button>Comprar</button>
+            <h2>Game Pass</h2>
+            <img src="img/nitendo.png" alt="">
+            <h3>Preço: 59.90</h3>
+            <button onclick="comprar()">Comprar</button>
         </div>
 
     </div>
+
+    <script>
+        function Cilentes(){
+            window.location.href = "cardapio.html"
+        }
+
+        function comprar(){
+            alert("Game pass comprado!!!")
+        }
+    </script>
 </body>
 </html>
