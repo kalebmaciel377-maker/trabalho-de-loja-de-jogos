@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendedores.css">
+    <title>Loja Game.com</title>
+</head>
+<body>
+    <h1>Loja de Jogos</h1>
+
+    <input type="text"  id="nome" placeholder="Nome do Jogo">
+    <input type="number" id="preco" placeholder="Preço">
+    <input type="text" id="categoria" placeholder="Categoria">
+    <button onclick="adicionar_jogo()" class="add">Adicionar Jogo</button>
+
+    <div id="cardapio"></div>
+
+    <script>
+        let produtos = [{
+            nome: 'nome',
+            preco: 123,
+            categoria: 'categoria'
+        }];
+
+        function listar_produtos(){
+            let cardapio = document.getElementById("cardapio");
+
+            cardapio.innerHTML = "";
+
+            for(let i = 0; i < produtos.length; i++){
+                cardapio.innerHTML += 
+                "<div class='card'>" +
+                    "<h2>" + produtos[i].nome + "</h2>" +
+                    "<p>" + produtos[i].preco + "</p>" +
+                    "<p>" + produtos[i].categoria + "</p>" +
+                    "<button class='btn' id='comp' onclick='comprar()'>Comprar</button>" +
+                    "<button class='remove' id='rem' onclick='remover()'>Remover</button>"
+                "</div>"
+            }
+        }
+        
+        listar_produtos();
+
+        function adicionar_jogo(){
+            let nome = document.getElementById("nome").value;
+            let preco = document.getElementById("preco").value;
+            let categoria = document.getElementById("categoria").value;
+
+            produtos.push({
+                nome: nome,
+                preco: preco,
+                categoria: categoria
+            })
+
+            listar_produtos();
+        }
+
+        function comprar(){
+            alert("Item comprado!!!")
+        }
+
+        function remover(){
+            alert("Item Removido!!!")
+        }
+    </script>
+
+</body>
+</html>
